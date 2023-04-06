@@ -24,6 +24,16 @@ class MetricConverter:
         """
         return feet / 3.28084
 
+    @staticmethod
+    def kilometers_to_miles(kilometers: float) -> float:
+        """
+        Преобразует километры в мили
+        :param kilometers (float): Километры
+        :return:
+                float: Мили
+        """
+        return kilometers * 0.62137
+
 def execute_application():
     pass
 

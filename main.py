@@ -4,6 +4,16 @@
 #методов.
 
 class MetricConverter:
+    @staticmethod
+    def meters_to_feet(meters: float) -> float:
+        """
+        Переводит метры в футы
+        :param meters: метры
+        :return:
+                футы
+        """
+        return meters * 3.28084
+
 def execute_application():
     pass
 

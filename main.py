@@ -1,36 +1,64 @@
 #Задание 1.
-#Создайте класс для конвертирования температуры из Цельсия в
-#Фаренгейт и наоборот. У класса должно быть два статических метода: для
-#перевода из Цельсия в Фаренгейт и для перевода из Фаренгейта в Цельсий.
-class TemperatureConverter:
+#Создайте класс для перевода из метрической системы в английскую и
+#наоборот. Функциональность необходимо реализовать в виде статических
+#методов.
+
+class MetricConverter:
     @staticmethod
-    def celsius_to_fahrenheit(celsius: float) -> float:
+    def meters_to_feet(meters: float) -> float:
         """
-        Подсчитывает градусы Фаренгейта, из полученных из градусов Цельсия
-        :param celsius: градусы Цельсия
+        Переводит метры в футы
+        :param meters: метры
         :return:
-                градусы Фаренгейта
+                футы
         """
-        return (celsius * 9/5) + 32
+        return meters * 3.28084
 
     @staticmethod
-    def fahrenheit_to_celsius(fahrenheit: float) -> float:
+    def feet_to_meters(feet: float) -> float:
         """
-        Подсчитывает градусы Цельсия, из полученных из градусов Фаренгейта
-        :param fahrenheit: градусы Фаренгейта
+        Переводит футы в метры
+        :param feet: футы
         :return:
-                градусы Цельсия
+                метры
         """
-        return (fahrenheit - 32) * 5/9
+        return feet / 3.28084
 
+    @staticmethod
+    def kilometers_to_miles(kilometers: float) -> float:
+        """
+        Преобразует километры в мили
+        :param kilometers (float): Километры
+        :return:
+                float: Мили
+        """
+        return kilometers * 0.62137
+
+    @staticmethod
+    def miles_to_kilometers(miles: float) -> float:
+        """
+        Преобразует мили в километры
+        :param miles (float): Мили
+        :return:
+                float: Километры
+        """
+        return miles * 1.609344
 def execute_application():
-    celsius = float(input("Введите значение температуры в градусах Цельсия: "))
-    fahrenheit = TemperatureConverter.celsius_to_fahrenheit(celsius)
-    print(f"{celsius} градусов Цельсия равно {fahrenheit:.01f} градусов Фаренгейта.")
+    meters = float(input("Введите значение в метрах: "))
+    feet = MetricConverter.meters_to_feet(meters)
+    print(f"{meters} метров равно {feet:.01f} футов.")
 
-    fahrenheit = float(input("Введите значение температуры в градусах Фаренгейта: "))
-    celsius = TemperatureConverter.fahrenheit_to_celsius(fahrenheit)
-    print(f"{fahrenheit} градусов Фаренгейта равно {celsius:.01f} градусов Цельсия")
+    feet = float(input("Введите значение в футах: "))
+    meters = MetricConverter.feet_to_meters(feet)
+    print(f"{feet} футов равно {meters:.01f} метров.")
+
+    kilometers = float(input("Введите значение в километрах: "))
+    miles = MetricConverter.kilometers_to_miles(kilometers)
+    print(f"{kilometers} километров равно {miles:.01f} миль.")
+
+    miles = float(input("Введите значение в милях: "))
+    kilometers = MetricConverter.miles_to_kilometers(kilometers)
+    print(f"{miles} миль равно {kilometers:.01f} километров.")
 
 
 

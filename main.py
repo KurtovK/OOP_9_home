@@ -44,7 +44,21 @@ class MetricConverter:
         """
         return miles * 1.609344
 def execute_application():
-    pass
+    meters = float(input("Введите значение в метрах: "))
+    feet = MetricConverter.meters_to_feet(meters)
+    print(f"{meters} метров равно {feet:.01f} футов.")
+
+    feet = float(input("Введите значение в футах: "))
+    meters = MetricConverter.feet_to_meters(feet)
+    print(f"{feet} футов равно {meters:.01f} метров.")
+
+    kilometers = float(input("Введите значение в километрах: "))
+    miles = MetricConverter.kilometers_to_miles(kilometers)
+    print(f"{kilometers} километров равно {miles:.01f} миль.")
+
+    miles = float(input("Введите значение в милях: "))
+    kilometers = MetricConverter.miles_to_kilometers(kilometers)
+    print(f"{miles} миль равно {kilometers:.01f} километров.")
 
 
 

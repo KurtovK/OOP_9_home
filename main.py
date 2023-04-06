@@ -13,6 +13,16 @@ class TemperatureConverter:
         """
         return (celsius * 9/5) + 32
 
+    @staticmethod
+    def fahrenheit_to_celsius(fahrenheit: float) -> float:
+        """
+        Подсчитывает градусы Цельсия, из полученных из градусов Фаренгейта
+        :param fahrenheit: градусы Фаренгейта
+        :return:
+                градусы Цельсия
+        """
+        return (fahrenheit - 32) * 5/9
+
 def execute_application():
     pass
 

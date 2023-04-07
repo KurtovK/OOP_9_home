@@ -17,6 +17,12 @@ class Passport:
             f"Пол: {self.__gender}\n"\
             f"Дата рождения: {self.__date_birthday}\n"\
             f"Место рождения: {self.__place_birth}\n"
+    def info(self):
+        print(\
+            f"ФИО: {self.__name}\n" \
+            f"Пол: {self.__gender}\n"\
+            f"Дата рождения: {self.__date_birthday}\n"\
+            f"Место рождения: {self.__place_birth}\n")
 
 def execute_application():
     pass

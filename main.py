@@ -17,12 +17,14 @@ class Passport:
             f"Пол: {self.__gender}\n"\
             f"Дата рождения: {self.__date_birthday}\n"\
             f"Место рождения: {self.__place_birth}\n"
+
     def info(self):
-        print(\
-            f"ФИО: {self.__name}\n" \
-            f"Пол: {self.__gender}\n"\
-            f"Дата рождения: {self.__date_birthday}\n"\
+        print(f"ФИО: {self.__name}\n"
+            f"Пол: {self.__gender}\n"
+            f"Дата рождения: {self.__date_birthday}\n"
             f"Место рождения: {self.__place_birth}\n")
+
+
 class ForeignPassport(Passport):
     def __init__(self, name: Dict[str, str], gender: str, date_birthday: Dict[str, str], place_birth: str,
                  citizenship: str, date_issue: Dict[str, str],expiration_date: Dict[str, str], issued_at: str,
@@ -34,8 +36,17 @@ class ForeignPassport(Passport):
         self.__issued_at = issued_at
         self.__series = series
         self.__number = number
+
+    def info(self):
+        super().info()
+        print(f"Гражданство: {self.__citizenship}\n"
+            f"Дата выдачи: {self.__date_issue}\n"
+            f"Дата окончвния: {self.__expiration_date}\n"
+            f"Выдано:{self.__issued_at}\n"  
+            f"Серия:{self.__series}\n"  
+            f"Номер: {self.__number}")
 def execute_application():
-    pass
+
 
 
 

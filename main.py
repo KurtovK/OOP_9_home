@@ -12,17 +12,17 @@ class Passport:
         self.__place_birth = place_birth
 
     def __str__(self):
-        return \
-            f"ФИО: {self.__name}\n" \
+        return f"ФИО: {self.__name}\n" \
             f"Пол: {self.__gender}\n"\
             f"Дата рождения: {self.__date_birthday}\n"\
             f"Место рождения: {self.__place_birth}\n"
 
     def info(self):
-        print(f"ФИО: {self.__name}\n"
+        print(f"\nКласс: {self.__class__.__name__}\n"
+            f"ФИО: {self.__name}\n"
             f"Пол: {self.__gender}\n"
             f"Дата рождения: {self.__date_birthday}\n"
-            f"Место рождения: {self.__place_birth}\n")
+            f"Место рождения: {self.__place_birth}")
 
 
 class ForeignPassport(Passport):
@@ -46,11 +46,29 @@ class ForeignPassport(Passport):
             f"Серия:{self.__series}\n"  
             f"Номер: {self.__number}")
 def execute_application():
+    name = {"Имя": "Константин", "Фамилия": "Куртов", "Отчество":"Дмитриевич"}
+    gender = "Мужской"
+    date_birthday = {"день": "21", "месяц": "февраль", "год": "1987"}
+    place_birth = "с.Илек"
+    passport = Passport(name, gender, date_birthday, place_birth)
 
+    passport.info()
 
+    name = {"Имя": "Konstantyn", "Фамилия": "Kurtov", "Отчество": "Dmitrievich"}
+    gender = "М"
+    date_birthday = {"день": "21", "месяц": "February", "год": "1987"}
+    place_birth = "s.Ilek"
+    citizenship = "Russia"
+    date_issue = {"день": "16", "месяц": "May", "год": "2014"}
+    expiration_date = {"день": "16", "месяц": "May", "год": "2024"}
+    issued_at = "ОФМС"
+    series = "КК087"
+    number = "21021987"
 
-
-
+    for_passport = ForeignPassport(name, gender, date_birthday, place_birth, citizenship, date_issue, expiration_date,
+                                   issued_at, series, number)
+    print()
+    for_passport.info()
 
 if __name__=="__main__":
     execute_application()

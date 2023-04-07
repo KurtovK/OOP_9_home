@@ -23,7 +23,17 @@ class Passport:
             f"Пол: {self.__gender}\n"\
             f"Дата рождения: {self.__date_birthday}\n"\
             f"Место рождения: {self.__place_birth}\n")
-
+class ForeignPassport(Passport):
+    def __init__(self, name: Dict[str, str], gender: str, date_birthday: Dict[str, str], place_birth: str,
+                 citizenship: str, date_issue: Dict[str, str],expiration_date: Dict[str, str], issued_at: str,
+                 series: str, number: str):
+        super().__init__(name, gender, date_birthday, place_birth)
+        self.__citizenship = citizenship
+        self.__date_issue = date_issue
+        self.__expiration_date = expiration_date
+        self.__issued_at = issued_at
+        self.__series = series
+        self.__number = number
 def execute_application():
     pass
 

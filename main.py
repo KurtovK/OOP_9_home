@@ -35,9 +35,14 @@ class Blender(Device):
               f"Скорость: {self.__speed}")
 
 
-
-
 def excute_application():
-    pass
+    device = Device("Redmond", "RT-23", 2100.0)
+    device.info()
+
+    coffee_machine = CoffeeMachine("DeLonghi", "EC155M", 9999.0, 1100, 1.1)
+    coffee_machine.info()
+
+    blender = Blender("Braun", "JB5160BK", 6999.0, 1000, 5)
+    blender.info()
 if __name__=="__main__":
     excute_application()

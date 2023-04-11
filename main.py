@@ -4,7 +4,7 @@
 #(содержит информацию о кофемашине), класс Blender (содержит информацию
 #о блендере).
 class Device:
-    def __init__(self, brand: str, model: str):
+    def __init__(self, brand: str, model: str,price: str):
         self.__brand = brand
         self.__model = model
         self.__price = price
@@ -13,6 +13,13 @@ class Device:
               f"Брэнд: {self.__brand}\n"
               f"Модель: {self.__model}\n"
               f"Цена: {self.__price}\n")
+class CoffeeMachine(Device):
+    def __init__(self,brand: str, model: str, price: str, power: str, water_capacity: str):
+        super().__init__(brand, model, price)
+        self.__power = power
+        self.__water_capacity = water_capacity
+
+
 
 def excute_application():
     pass

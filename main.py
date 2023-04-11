@@ -24,6 +24,15 @@ class CoffeeMachine(Device):
         super().info()
         print(f"Мощьность:{self.__power}\n"
               f"Емкость воды: {self.__water_capacity}")
+class Blender(Device):
+    def __init__(self, brand: str, model: str, price: str, power: str, speed: str):
+        super().__init__(brand, model, price)
+        self.__power = power
+        self.__speed = speed
+    def info(self):
+        super().info()
+        print(f"Мощьность: {self.__power}\n"
+              f"Скорость: {self.__speed}")
 
 
 

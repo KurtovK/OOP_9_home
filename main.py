@@ -4,10 +4,15 @@
 #(содержит информацию о кофемашине), класс Blender (содержит информацию
 #о блендере).
 class Device:
-    def __init__(self, name: str, brand: str, model: str):
-        self.__name = name
+    def __init__(self, brand: str, model: str):
         self.__brand = brand
         self.__model = model
+        self.__price = price
+    def info(self):
+        print(f"\nКласс: {self.__class__.__name__}\n"
+              f"Брэнд: {self.__brand}\n"
+              f"Модель: {self.__model}\n"
+              f"Цена: {self.__price}\n")
 
 def excute_application():
     pass

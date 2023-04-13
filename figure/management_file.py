@@ -30,3 +30,19 @@ class FigureManagementFile:
             return cls.__read_ellipse_from_file(path)
         else:
             raise Exception("В файл записаны данные неизвестной фигуры")
+
+    @classmethod
+    def __read_square_from_file(cls, path):
+        """
+        Возвращает объект с полями заполненными данными из считанного файла
+        :param path (str): Путь до файла и название с расширением
+        :return:
+                square (Square): экземпляр класса Square
+        """
+
+        with open(path, "r", encoding="UTF-8") as file:
+            file.readline()
+            x = int(file.readline().strip())
+            y = int(file.readline().strip())
+            side = float(file.readline().strip())
+        return cls(x, y, side)

@@ -46,3 +46,18 @@ class FigureManagementFile:
             y = int(file.readline().strip())
             side = float(file.readline().strip())
         return cls(x, y, side)
+    @classmethod
+    def __read_circle_from_file(cls, path):
+        """
+        Возвращает объект с полями заполненными данными из считанного файла
+        :param path (str): Путь до файла и название с расширением
+        :return:
+                circle (Circle): экземпляр класса Circle
+        """
+
+        with open(path, "r", encoding="UTF-8") as file:
+            file.readline()
+            x = int(file.readline().strip())
+            y = int(file.readline().strip())
+            radius = float(file.readline().strip())
+        return cls(x, y, radius)

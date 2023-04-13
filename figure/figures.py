@@ -104,3 +104,8 @@ class Rectangle (__Shape,FigureManagementFile):
     @height.setter
     def height(self, height: float):
         self.__height = height
+
+    def info(self):
+        print(f"Фигура: {self.NAME}")
+        super().info()
+        print(f"Стороны: {self.__width} x {self.__height}\n")

@@ -1,6 +1,6 @@
 from.management_file import FigureManagementFile
 
-class Shape:
+class __Shape:
     def __init__(self, x: int, y: int):
         self.__x = x
         self.__y = y
@@ -21,7 +21,13 @@ class Shape:
     def info(self):
         print(f"Координаты точки: ({self.__x}, {self.__y})")
 
-class Sguare(Shape, FigureManagementFile):
+class Sguare(__Shape, FigureManagementFile):
+    NAME = "Квадрат"
+    def __init__(self, x: int, y: int, side: float):
+        super().__init__(x, y)
+        self.__side = side
+
+
     pass
 
 class Circle(Shape, FigureManagementFile):

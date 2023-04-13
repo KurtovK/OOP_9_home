@@ -80,3 +80,11 @@ class Ellipse (__Shape,FigureManagementFile):
         print(f"Фигура: {self.NAME}")
         super().info()
         print(f"Стороны: {self.__width} x {self.__width}\n")
+
+class Rectangle (__Shape,FigureManagementFile):
+    NAME = "Прямоугольник"
+
+    def __init(self, x: int, y: int, width: float, height: float):
+        super().init(x, y)
+        self.__width = width
+        self.__height = height

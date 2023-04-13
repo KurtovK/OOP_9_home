@@ -18,6 +18,8 @@ class Shape:
     @y.setter
     def y(self, y: int):
         self.__y = y
+    def info(self):
+        print(f"Координаты точки: ({self.__x}, {self.__y})")
 
 class Sguare(Shape, FigureManagementFile):
     pass

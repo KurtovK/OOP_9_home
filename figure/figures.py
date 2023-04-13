@@ -57,6 +57,9 @@ class Circle(__Shape, FigureManagementFile):
         print(f"Радиус: {self.__radius}\n")
 
 
-class Ellipse (Shape,FigureManagementFile):
-    pass
-
+class Ellipse (__Shape,FigureManagementFile):
+    NAME = "Эллипс"
+    def __init__(self, x: int, y: int, width: float, height: float):
+        super().__init__(x, y)
+        self.__width = width
+        self.__height = height

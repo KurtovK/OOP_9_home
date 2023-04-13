@@ -50,6 +50,13 @@ class Circle(__Shape, FigureManagementFile):
     @radius.setter
     def radius(self, radius: float):
         self.__radius = radius
+
+    def info(self):
+        print(f"Фигура: {self.NAME}")
+        super().info()
+        print(f"Радиус: {self.__radius}\n")
+
+
 class Ellipse (Shape,FigureManagementFile):
     pass
 

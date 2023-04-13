@@ -39,8 +39,11 @@ class Sguare(__Shape, FigureManagementFile):
         super().info()
         print(f"Сторона: {self.__side}\n")
 
-class Circle(Shape, FigureManagementFile):
-    pass
+class Circle(__Shape, FigureManagementFile):
+    NAME = "Окружность"
+    def __init__(self, x: int, y: int, radius: float):
+        super().__init__(x, y)
+        self.__radius = radius
 
 class Ellipse (Shape,FigureManagementFile):
     pass

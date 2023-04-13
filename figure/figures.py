@@ -34,6 +34,10 @@ class Sguare(__Shape, FigureManagementFile):
     def side(self, side:float):
         self.__side = side
 
+    def info(self):
+        print(f"Фигура: {self.NAME}")
+        super().info()
+        print(f"Сторона: {self.__side}\n")
 
 class Circle(Shape, FigureManagementFile):
     pass

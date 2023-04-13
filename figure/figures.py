@@ -22,7 +22,7 @@ class __Shape:
         print(f"Координаты точки: ({self.__x}, {self.__y})")
 
 class Sguare(__Shape, FigureManagementFile):
-    NAME = "Квадрат"
+    __NAME = "Квадрат"
     def __init__(self, x: int, y: int, side: float):
         super().__init__(x, y)
         self.__side = side
@@ -35,12 +35,12 @@ class Sguare(__Shape, FigureManagementFile):
         self.__side = side
 
     def info(self):
-        print(f"Фигура: {self.NAME}")
+        print(f"Фигура: {self.__NAME}")
         super().info()
         print(f"Сторона: {self.__side}\n")
 
 class Circle(__Shape, FigureManagementFile):
-    NAME = "Окружность"
+    __NAME = "Окружность"
     def __init__(self, x: int, y: int, radius: float):
         super().__init__(x, y)
         self.__radius = radius
@@ -52,13 +52,13 @@ class Circle(__Shape, FigureManagementFile):
         self.__radius = radius
 
     def info(self):
-        print(f"Фигура: {self.NAME}")
+        print(f"Фигура: {self.__NAME}")
         super().info()
         print(f"Радиус: {self.__radius}\n")
 
 
 class Ellipse (__Shape,FigureManagementFile):
-    NAME = "Эллипс"
+    __NAME = "Эллипс"
     def __init__(self, x: int, y: int, width: float, height: float):
         super().__init__(x, y)
         self.__width = width
@@ -77,12 +77,12 @@ class Ellipse (__Shape,FigureManagementFile):
     def height(self, height: float):
         self.__height = height
     def info(self):
-        print(f"Фигура: {self.NAME}")
+        print(f"Фигура: {self.__NAME}")
         super().info()
         print(f"Стороны: {self.__width} x {self.__width}\n")
 
 class Rectangle (__Shape,FigureManagementFile):
-    NAME = "Прямоугольник"
+    __NAME = "Прямоугольник"
 
     def __init(self, x: int, y: int, width: float, height: float):
         super().init(x, y)
@@ -106,6 +106,6 @@ class Rectangle (__Shape,FigureManagementFile):
         self.__height = height
 
     def info(self):
-        print(f"Фигура: {self.NAME}")
+        print(f"Фигура: {self.__NAME}")
         super().info()
         print(f"Стороны: {self.__width} x {self.__height}\n")

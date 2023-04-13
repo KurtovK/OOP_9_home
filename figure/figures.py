@@ -1,7 +1,10 @@
 from.management_file import FigureManagementFile
 
 class Shape:
-    pass
+    def __init__(self, x: int, y: int):
+        self.__x = x
+        self.__y = y
+
 
 class Sguare(Shape, FigureManagementFile):
     pass

@@ -1,0 +1,2 @@
+class FigureManagementFile:
+    pass

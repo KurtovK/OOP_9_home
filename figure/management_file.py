@@ -61,3 +61,19 @@ class FigureManagementFile:
             y = int(file.readline().strip())
             radius = float(file.readline().strip())
         return cls(x, y, radius)
+    @classmethod
+    def __read_ellipse_from_file(cls, path):
+        """
+        Возвращает объект с полями заполненныеми данными из считанного файла
+        :param path (str): Путь до файла и название с расширением
+        :return:
+                ellipse (Ellipse): экземпляр класса Ellipse
+        """
+
+        with open(path, "r", encoding="UTF-8") as file:
+            file.readline()
+            x = int(file.readline().strip())
+            y = int(file.readline().strip())
+            width = float(file.readline().strip())
+            height = float(file.readline().strip())
+        return cls(x, y, width, height)

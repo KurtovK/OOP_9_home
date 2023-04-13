@@ -44,7 +44,12 @@ class Circle(__Shape, FigureManagementFile):
     def __init__(self, x: int, y: int, radius: float):
         super().__init__(x, y)
         self.__radius = radius
-
+    @property
+    def radius(self):
+        return self.__radius
+    @radius.setter
+    def radius(self, radius: float):
+        self.__radius = radius
 class Ellipse (Shape,FigureManagementFile):
     pass
 

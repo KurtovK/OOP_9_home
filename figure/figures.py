@@ -27,8 +27,13 @@ class Sguare(__Shape, FigureManagementFile):
         super().__init__(x, y)
         self.__side = side
 
+    @property
+    def side(self):
+        return self.__side
+    @side.setter
+    def side(self, side:float):
+        self.__side = side
 
-    pass
 
 class Circle(Shape, FigureManagementFile):
     pass

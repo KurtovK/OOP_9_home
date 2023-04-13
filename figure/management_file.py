@@ -77,3 +77,20 @@ class FigureManagementFile:
             width = float(file.readline().strip())
             height = float(file.readline().strip())
         return cls(x, y, width, height)
+
+    @classmethod
+    def __read_rectangle_from_file(cls, path):
+        """
+        Возвращает объект с полями заполненными данными из считанного файла
+        :param path (str): Путь до файла и название с расширением
+        :return:
+                rectangle (Rectangle): экземпляр класса Rectangle
+        """
+
+        with open(path, "r", encoding="UTF-8") as file:
+            file.readline()
+            x = int(file.readline().strip())
+            y = int(file.readline().strip())
+            width = float(file.readline().strip())
+            height = float(file.readline().strip())
+        return cls(x, y, width, height)

@@ -63,3 +63,16 @@ class Ellipse (__Shape,FigureManagementFile):
         super().__init__(x, y)
         self.__width = width
         self.__height = height
+    @property
+    def width(self):
+        return self.__width
+    @width.setter
+    def width(self, width: float):
+        self.__width = width
+
+    @property
+    def height(self):
+        return self.__height
+    @height.setter
+    def height(self, height: float):
+        self.__height = height

@@ -4,36 +4,46 @@
 #классификации. Используя классы-миксины «примешайте» к классам
 #наследникам методы, которые выводят информацию об объекте из классов
 #«Колесо», «Двигатель», «Двери» и т.п.
-class Car:
-    def __init__(self, brand: str, model: str , color: str):
-        self.__brand = brand
-        self.__model = model
-        self.__color = color
-class Wheel:
-    def __init__(self, size: int, material: str):
-        self.__size = size
-        self.__material = material
-    def wheel_info(self):
-        print(f"Размер: {self.__size}\nМатериал: {self.__material}")
-class Engine:
-    def __init__(self, power: int, fuel_type: str):
-        self.__power = power
-        self.__fuel_type = fuel_type
+def execute_application():
+    class Car:
+        def __init__(self, brand: str, model: str , color: str):
+            self.__brand = brand
+            self.__model = model
+            self.__color = color
+    class Wheel:
+        def __init__(self, size: int, material: str):
+            self.__size = size
+            self.__material = material
+        def wheel_info(self):
+            print(f"Размер: {self.__size}\nМатериал: {self.__material}")
+    class Engine:
+        def __init__(self, power: int, fuel_type: str):
+            self.__power = power
+            self.__fuel_type = fuel_type
 
-    def engine_info(self):
-        print(f"Мощность: {self.__power}\nТип топлива: {self.__fuel_type}")
-class Door:
-    def __init__(self, number: int, isopen: bool):
-        self.__number = number
-        self.__isopen = isopen
+        def engine_info(self):
+            print(f"Мощность: {self.__power}\nТип топлива: {self.__fuel_type}")
+    class Door:
+        def __init__(self, number: int, isopen: bool):
+            self.__number = number
+            self.__isopen = isopen
 
-    def door_info(self):
-        if self.__isopen:
-            print(f"Дверь {self.__number} открыта")
-        else:
-            print(f"Дверь {self.__number} закрыта")
+        def door_info(self):
+            if self.__isopen:
+                print(f"Дверь {self.__number} открыта")
+            else:
+                print(f"Дверь {self.__number} закрыта")
 
-def executer_application():
-    pass
+    class SportCar(Car, Wheel, Engine):
+        def __init__(self, brand: str, model: str, color: str, size: int, material: str, power: int, fuel_type: str):
+            Car.__init__(self, brand, model, color)
+            Wheel.__init__(self, size, material)
+            Engine.__init__(self, power, fuel_type)
+
+        def sportcar_info(self):
+            print(f"Бренд: {self.__brand}\nМодель: {self.__model}\nЦвет: {self.__color}")
+            Wheel.wheel_info(self)
+            Engine.engine_info(self)
+
 if __name__ =="__main__":
-    executer_application()
+    execute_application()

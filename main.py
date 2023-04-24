@@ -20,8 +20,19 @@ class Engine:
         self.__power = power
         self.__fuel_type = fuel_type
 
-    def engineinfo(self):
+    def engine_info(self):
         print(f"Мощность: {self.__power}\nТип топлива: {self.__fuel_type}")
+class Door:
+    def __init__(self, number: int, isopen: bool):
+        self.__number = number
+        self.__isopen = isopen
+
+    def door_info(self):
+        if self.__isopen:
+            print(f"Дверь {self.__number} открыта")
+        else:
+            print(f"Дверь {self.__number} закрыта")
+
 def executer_application():
     pass
 if __name__ =="__main__":

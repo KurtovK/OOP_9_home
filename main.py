@@ -45,5 +45,26 @@ def execute_application():
             Wheel.wheel_info(self)
             Engine.engine_info(self)
 
+    class SUV(Car, Wheel, Door):
+        def __init__(self, brand: str, model: str, color: str, size: int, material: str, number: int, isopen: bool):
+            Car.__init__(self, brand, model, color)
+            Wheel.__init__(self, size, material)
+            Door.__init__(self, number, isopen)
+
+        def suvinfo(self):
+            print(f"Бренд: {self.__brand}\nМодель: {self.__model}\nЦвет: {self.__color}")
+            Wheel.wheel_info(self)
+            Door.door_info(self)
+
+    class Truck(Car, Wheel):
+        def __init__(self, brand: str, model: str, color: str, size: float, material: str, max_load: int):
+            Car.__init__(self, brand, model, color)
+            Wheel.__init__(self, size, material)
+            self.max_load = max_load
+
+        def truck_info(self):
+            print(f"Бренд: {self.__brand}\nМодель: {self.__model}\nЦвет: {self.__color}")
+            Wheel.wheel_info(self)
+            print(f"Максимальная нагрузка: {self.max_load} кг")
 if __name__ =="__main__":
     execute_application()

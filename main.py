@@ -15,6 +15,13 @@ class Wheel:
         self.__material = material
     def wheel_info(self):
         print(f"Размер: {self.__size}\nМатериал: {self.__material}")
+class Engine:
+    def __init__(self, power: int, fuel_type: str):
+        self.__power = power
+        self.__fuel_type = fuel_type
+
+    def engineinfo(self):
+        print(f"Мощность: {self.__power}\nТип топлива: {self.__fuel_type}")
 def executer_application():
     pass
 if __name__ =="__main__":

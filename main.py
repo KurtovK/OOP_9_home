@@ -66,5 +66,19 @@ def execute_application():
             print(f"Бренд: {self.__brand}\nМодель: {self.__model}\nЦвет: {self.__color}")
             Wheel.wheel_info(self)
             print(f"Максимальная нагрузка: {self.max_load} кг")
+
+    class ElectricCar(Car, Wheel, Engine):
+        def __init__(self, brand: str, model: str, color: str, size: int, material: str, power: int, fueltype: str,
+                     batterycapacity: int):
+            Car.__init__(self, brand, model, color)
+            Wheel.__init__(self, size, material)
+            Engine.__init__(self, power, fueltype)
+            self.batterycapacity = batterycapacity
+
+        def electriccarinfo(self):
+            print(f"Бренд: {self.__brand}\nМодель: {self.__model}\nЦвет: {self.__color}")
+            Wheel.wheel_info(self)
+            Engine.engine_info(self)
+            print(f"Емкость батареи: {self.batterycapacity} кВтч")
 if __name__ =="__main__":
     execute_application()

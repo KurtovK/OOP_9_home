@@ -13,6 +13,8 @@ class Wheel:
     def __init__(self, size: int, material: str):
         self.__size = size
         self.__material = material
+    def wheel_info(self):
+        print(f"Размер: {self.__size}\nМатериал: {self.__material}")
 def executer_application():
     pass
 if __name__ =="__main__":

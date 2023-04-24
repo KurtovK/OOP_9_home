@@ -9,6 +9,10 @@ class Car:
         self.__brand = brand
         self.__model = model
         self.__color = color
+class Wheel:
+    def __init__(self, size: int, material: str):
+        self.__size = size
+        self.__material = material
 def executer_application():
     pass
 if __name__ =="__main__":

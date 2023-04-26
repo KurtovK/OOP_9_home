@@ -44,6 +44,10 @@ class MobileNotification(NotificationService):
         print(f"Сообщение отправлено на номер: '{self.__phone}' {message}")
 
 def excuter_application():
-    pass
+    email = EmailNotification("example@example.com")  # пример адреса электронной почты
+    email.send_message("Здравствуйте, это уведомление по электронной почте")
+
+    mobile = MobileNotification("1234567890")
+    mobile.send_message("Здравствуйте, это мобильное уведомление")
 if __name__=="__main__":
     excuter_application()

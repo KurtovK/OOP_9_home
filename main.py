@@ -50,6 +50,17 @@ class Circle:
         return hash((self.__radius, self.__circumference))
 
 def execute_application():
-    pass
+    c1 = Circle(5)
+    c2 = Circle(3)
+    try:
+        print("Проверка на равенство(=):", c1 == c2)
+        print("Проверка на не равенство(!=):", c1 != c2)
+        print("Проверка на меньше(<):", c1 < c2)
+        print("Проверка на больше(>):", c1 > c2)
+        print("Проверка на меньше или равно(<=):", c1 <= c2)
+        print("Проверка на больше или равно(>=):", c1 >= c2)
+    except TypeError as e:
+        print(e)
+
 if __name__=="__main__":
     execute_application()

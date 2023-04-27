@@ -54,5 +54,5 @@ def execute_application():
         print("Проверка на больше или равно(>=):", f_1 >= f_2)
     except TypeError as e:
         print(e)
-if __name=="__main__":
+if __name__=="__main__":
     execute_application()

@@ -43,6 +43,16 @@ class Flat:
         return hash((self.__square, self.__price))
 
 def execute_application():
-    pass
+    f_1 = Flat(60, 1200000)
+    f_2 = Flat(50, 900000)
+    try:
+        print("Проверка на равно(=):", f_1 == f_2)
+        print("Проверка на не равно (!=):", f_1 != f_2)
+        print("Проверка на меньше (<):", f_1 < f_2)
+        print("Проверка на больше (>):", f_1 > f_2)
+        print("Проверка на меньше или равно (<=):", f_1 <= f_2)
+        print("Проверка на больше или равно(>=):", f_1 >= f_2)
+    except TypeError as e:
+        print(e)
 if __name=="__main__":
     execute_application()

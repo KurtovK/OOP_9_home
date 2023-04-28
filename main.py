@@ -29,25 +29,23 @@ from abc import ABC, abstractmethod
 # изменяем (модифицируем) наш класс.
 class NotificationService(ABC):
     @abstractmethod
-    def send_message(self):
+    def send_message(self, message: str):
         pass
 class EmailNotification(NotificationService):
-    def __init__(self, email: str):
-        self.email = email
-    def send_message(self, message):
-        print(f"Сообщение отправлено по электронной почте по адресу: '{self.email}'")
+    @staticmethod
+    def send_message(email: str, message: str):
+        print(f"Сообщение отправлено по электронной почте по адресу: '{email}'")
 
 class MobileNotification(NotificationService):
-    def __init__(self, phone:str):
-        self.__phone = phone
-    def send_message(self, message):
-        print(f"Сообщение отправлено на номер: '{self.__phone}' {message}")
+    @staticmethod
+    def send_message(phone: str, message: str):
+        print(f"Сообщение отправлено на номер: '{phone}' {message}")
 
 def excuter_application():
-    email = EmailNotification("example@example.com")  # пример адреса электронной почты
-    email.send_message("Здравствуйте, это уведомление по электронной почте")
+    email = "kurtov@yst.com"  # пример адреса электронной почты
+    EmailNotification.send_message(email, "Здравствуйте, это уведомление по электронной почте")
 
-    mobile = MobileNotification("1234567890")
-    mobile.send_message("Здравствуйте, это мобильное уведомление")
+    phone = "1234567890"
+    MobileNotification.send_message(phone, "Здравствуйте, это мобильное уведомление")
 if __name__=="__main__":
     excuter_application()

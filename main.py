@@ -32,12 +32,12 @@ class NotificationService(ABC):
     def send_message(self, message: str):
         pass
 class EmailNotification(NotificationService):
-    @staticmethod
+
     def send_message(email: str, message: str):
         print(f"Сообщение отправлено по электронной почте по адресу: '{email}'")
 
 class MobileNotification(NotificationService):
-    @staticmethod
+
     def send_message(phone: str, message: str):
         print(f"Сообщение отправлено на номер: '{phone}' {message}")
 

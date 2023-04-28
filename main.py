@@ -55,37 +55,40 @@ class RentCarService:
     def __init__(self):
         self.car_service = CarService()
 
-    def find_car_by_number(self, number):
-        return self.car_service.find_car_by_number(number)
-
     def book_car(self, number, customer_email):
-        car = self.find_car_by_number(number)
+        car = self.car_service.find_car_by_number(number)
         if car and not car.rented:
             car.rented = True
             message = f"Ваш автомобиль {car.brand} {car.model} с номером {car.number} забронирован"
             NotificationService.send_notification(customer_email, message)
             PrinterService.print_order(message)
-            return True
+            return car
         else:
-            return False
+            return None
 
+    def provide_car_to_customer(self, car):
+        car_info = CarInfoService.get_car_info(car)
+        print(f"Машина {car_info} предоставлена клиенту")
 
+    def add_car(self, car):
+        self.car_service.add_car(car)
 
 def execute_application():
     rent_car_service = RentCarService()
-    rent_car_service.car_service.add_car(Car("C009HK", "WW", "Passat", 2018))
-    rent_car_service.car_service.add_car(Car("DEF456", "Honda", "Civic", 2020))
+    rent_car_service.add_car(Car("C009HK", "WW", "Passat", 2018))
+    rent_car_service.add_car(Car("DEF456", "Honda", "Civic", 2020))
 
-    car = rent_car_service.find_car_by_number("C009HK")
+    car = rent_car_service.car_service.find_car_by_number("C009HK")
     if car:
         car_info = CarInfoService.get_car_info(car)
         print(car_info)
     else:
         print("Автомобиль не найден")
 
-    booking_successful = rent_car_service.book_car("C009HK", "kurtov@yst.ru")
-    if booking_successful:
-        print("Машина успешно забронирована")
+    booked_car = rent_car_service.book_car("C009HK", "kurtov@yst.ru")
+    if booked_car:
+        rent_car_service.provide_car_to_customer(booked_car)
+        print("Машина успешно забронирована и предоставлена клиенту")
     else:
         print("Машина не найдена или уже забронирована")
 

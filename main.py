@@ -5,39 +5,58 @@
 #Проверка сравнения пар координат (операции >, <, <=, >=);
 class Point:
     def __init__(self, x, y):
-        self.__x = x
+        self._validate_coordinate(x)
+        self._validate_coordinate(y)
+        self.x = x
         self.__y = y
-    def __is_point(self, other):
-        if not isinstance(other, Point):
-            raise TypeError(f"Сравнение выполнить невозможно "
-                            f"между типом {self.__class__.__name__} "
-                            f"и {other.__class__.__name__}")
+
+    def _validate_coordinate(self, coord):
+        if not isinstance(coord, int):
+            raise TypeError(f"Координата должна быть целым числом, "
+                            f"вместо этого получено значение: {coord}")
+        if coord < 0:
+            raise ValueError(f"Координата не может быть отрицательной, "
+                             f"вместо этого получено значение: {coord}")
+
     def __eq__(self, other):
-        self.__is_point(other)
-        return self.__x == other.x and self.__y == other.y
+        if not isinstance(other, Point):
+            return False
+        return self.x == other.x and self.__y == other.__y
 
     def __ne__(self, other):
-        self.__is_point(other)
         return not self.__eq__(other)
 
     def __lt__(self, other):
-        self.__is_point(other)
-        return (self.__x, self.__y) < (other.x, other.y)
+        if not isinstance(other, Point):
+            raise TypeError(f"Сравнение выполнить невозможно "
+                            f"между типом {type(self)} "
+                            f"и {type(other)}")
+        return (self.x, self.__y) < (other.x, other.__y)
 
     def __le__(self, other):
-        self.__is_point(other)
-        return (self.__x, self.__y) <= (other.x, other.y)
+        if not isinstance(other, Point):
+            raise TypeError(f"Сравнение выполнить невозможно "
+                            f"между типом {type(self)} "
+                            f"и {type(other)}")
+        return (self.x, self.__y) <= (other.x, other.__y)
 
     def __gt__(self, other):
-        self.__is_point(other)
-        return (self.__x, self.__y) > (other.x, other.y)
+        if not isinstance(other, Point):
+            raise TypeError(f"Сравнение выполнить невозможно "
+                            f"между типом {type(self)} "
+                            f"и {type(other)}")
+        return (self.x, self.__y) > (other.x, other.__y)
 
     def __ge__(self, other):
-        self.__is_point(other)
-        return (self.__x, self.__y) >= (other.x, other.y)
+        if not isinstance(other, Point):
+            raise TypeError(f"Сравнение выполнить невозможно "
+                            f"между типом {type(self)} "
+                            f"и {type(other)}")
+        return (self.x, self.__y) >= (other.x, other.__y)
 
     def __hash__(self):
-        return hash((self.__x, self.__y))
+        return hash((self.x, self.__y))
+
 
 def execute_application():
     p1 = Point(1, 2)
@@ -45,33 +64,35 @@ def execute_application():
     p3 = Point(1, 2)
     try:
         # проверка метода eq
-        print("Проверка на равно (=):", p1.eq(p2))
-        print("Проверка на равно (=):", p1.eq(p3))
+        print("Проверка на равно (==):", p1 == p2)
+        print("Проверка на равно (==):", p1 == p3)
 
         # проверка метода ne
-        print("Проверка на не равно (!=):", p1.ne(p2))
-        print("Проверка на не равно (!=):", p1.ne(p3))
+        print("Проверка на не равно (!=):", p1 != p2)
+        print("Проверка на не равно (!=):", p1 != p3)
 
         # проверка метода lt
-        print("Проверка на меньше (<):", p1.lt(p2))
-        print("Проверка на меньше (<):", p2.lt(p1))
-        print("Проверка на меньше (<):", p1.lt(p3))
+        print("Проверка на меньше (<):", p1 < p2)
+        print("Проверка на меньше (<):", p2 < p1)
+        print("Проверка на меньше (<):", p1 < p3)
 
         # проверка метода le
-        print("Проверка на меньше или равно (<=):", p1.le(p2))
-        print("Проверка на меньше или равно (<=):", p2.le(p1))
-        print("Проверка на меньше или равно (<=):", p1.le(p3))
+        print("Проверка на меньше или равно (<=):", p1 <= p2)
+        print("Проверка на меньше или равно (<=):", p2 <= p1)
+        print("Проверка на меньше или равно (<=):", p1 <= p3)
 
         # проверка метода gt
-        print("Проверка на больше (>):", p1.gt(p2))
-        print("Проверка на больше (>):", p2.gt(p1))
-        print("Проверка на больше (>):", p1.gt(p3))
+        print("Проверка на больше (>):", p1 > p2)
+        print("Проверка на больше (>):", p2 > p1)
+        print("Проверка на больше (>):", p1 > p3)
 
         # проверка метода ge
-        print("Проверка на больше или равно (>=):", p1.ge(p2))
-        print("Проверка на больше или равно (>=):", p2.ge(p1))
-        print("Проверка на больше или равно (>=):", p1.ge(p3))
+        print("Проверка на больше или равно (>=):", p1 >= p2)
+        print("Проверка на больше или равно (>=):", p2 >= p1)
+        print("Проверка на больше или равно (>=):", p1 >= p3)
     except TypeError as e:
         print(e)
-if __name=="__main__":
+
+
+if __name__ == "__main__":
     execute_application()

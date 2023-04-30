@@ -3,30 +3,6 @@ from math import pi
 #Создайте класс Circle (окружность). Для данного класса реализуйте ряд перегруженных операторов:
 #Проверка на равенство радиусов двух окружностей (операция ==, !=);
 #Проверка сравнения длин двух окружностей (операции >, <, <=,>=);
-class InitializationValueError(Exception):
-    def __init__(self, text):
-        self.__text = text
-
-class Circle:
-    def __init__(self, radius: float):
-        self.validate_radius(radius)
-        self.radius = radius
-        self.__circumference = self.calculate_circumference()
-
-    def validate_radius(self, radius: float):
-        if radius <= 0:
-            raise InitializationValueError("Радиус должен быть больше нуля.")
-
-    def calculate_circumference(self):
-        return 2 * pi * self.radius
-
-    def __is_circle(self, other):
-        if not isinstance(other, Circle):
-            raise TypeError(f"Сравнение выполнить невозможно "
-                            f"между типом {self.__class.name} "
-                            f"а также {other.__class.name}")
-
-from math import pi
 
 class InitializationValueError(Exception):
     def __init__(self, text):

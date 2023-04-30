@@ -30,7 +30,7 @@ from abc import ABC, abstractmethod
 class NotificationService(ABC):
     @staticmethod
     @abstractmethod
-    def send_message(self, message: str):
+    def send_message(to_address: str, message: str):
         pass
 class EmailNotification(NotificationService):
     @staticmethod

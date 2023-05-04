@@ -5,10 +5,12 @@
 #Проверка сравнения пар координат (операции >, <, <=, >=);
 class Point:
     def __init__(self, x, y):
-        self._validate_coordinate(x)
-        self._validate_coordinate(y)
         self.__x = x
+        self.__x = self._validate_coordinate(x)
         self.__y = y
+        self.__y = self._validate_coordinate(y)
+
+
 
     def _validate_coordinate(self, coord):
         if not isinstance(coord, int):

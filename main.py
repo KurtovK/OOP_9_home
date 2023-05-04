@@ -7,55 +7,59 @@ class Point:
     def __init__(self, x, y):
         self._validate_coordinate(x)
         self._validate_coordinate(y)
-        self.x = x
+        self.__x = x
         self.__y = y
 
     def _validate_coordinate(self, coord):
         if not isinstance(coord, int):
             raise TypeError(f"Координата должна быть целым числом, "
                             f"вместо этого получено значение: {coord}")
-        if coord < 0:
-            raise ValueError(f"Координата не может быть отрицательной, "
-                             f"вместо этого получено значение: {coord}")
+
 
     def __eq__(self, other):
         if not isinstance(other, Point):
-            return False
-        return self.x == other.x and self.__y == other.__y
+            raise TypeError(f"Сравнение выполнить невозможно "
+                            f"между типом {type(self)} "
+                            f"и {type(other)}")
+        return self.__x == other.__x == self.__y == other.__y
 
     def __ne__(self, other):
-        return not self.__eq__(other)
+        if not isinstance(other, Point):
+            raise TypeError(f"Сравнение выполнить невозможно "
+                            f"между типом {type(self)} "
+                            f"и {type(other)}")
+        return self.__x == other.__x != self.__y == other.__y
 
     def __lt__(self, other):
         if not isinstance(other, Point):
             raise TypeError(f"Сравнение выполнить невозможно "
                             f"между типом {type(self)} "
                             f"и {type(other)}")
-        return (self.x, self.__y) < (other.x, other.__y)
+        return (self.__x, self.__y) < (other.__x, other.__y)
 
     def __le__(self, other):
         if not isinstance(other, Point):
             raise TypeError(f"Сравнение выполнить невозможно "
                             f"между типом {type(self)} "
                             f"и {type(other)}")
-        return (self.x, self.__y) <= (other.x, other.__y)
+        return (self.__x, self.__y) <= (other.__x, other.__y)
 
     def __gt__(self, other):
         if not isinstance(other, Point):
             raise TypeError(f"Сравнение выполнить невозможно "
                             f"между типом {type(self)} "
                             f"и {type(other)}")
-        return (self.x, self.__y) > (other.x, other.__y)
+        return (self.__x, self.__y) > (other.__x, other.__y)
 
     def __ge__(self, other):
         if not isinstance(other, Point):
             raise TypeError(f"Сравнение выполнить невозможно "
                             f"между типом {type(self)} "
                             f"и {type(other)}")
-        return (self.x, self.__y) >= (other.x, other.__y)
+        return (self.__x, self.__y) >= (other.__x, other.__y)
 
     def __hash__(self):
-        return hash((self.x, self.__y))
+        return hash((self.__x, self.__y))
 
 
 def execute_application():

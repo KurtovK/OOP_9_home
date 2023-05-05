@@ -23,7 +23,7 @@ class Point:
             raise TypeError(f"Сравнение выполнить невозможно "
                             f"между типом {type(self)} "
                             f"и {type(other)}")
-        return self.__x == other.__x == self.__y == other.__y
+        return self.__x == other.__x and self.__y == other.__y
 
     def __ne__(self, other):
         if not isinstance(other, Point):

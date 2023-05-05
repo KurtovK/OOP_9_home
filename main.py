@@ -1,62 +1,44 @@
 from abc import ABC, abstractmethod
-#Задание 1.
-#Рассмотрим принцип разделения интерфейсов.
-#Допустим у нас имеется абстрактный класс Payments и в нем есть три метода:
-#оплата WebMoney, оплата банковской карточкой и оплата по номеру телефона.
-#class Payments(ABC):
-#@abstarctmethod
-#def payWebMoney(self): pass
-#@abstarctmethod
-#def payCreditCard(self): pass
-#@abstarctmethod
-#def payPhoneNumber(self): pass
-#Выполните разделение интерфейса таким образом, чтобы можно было реализовать
-#два класса-сервиса, которые будут у себя реализовывать различные виды проведения
-#оплат (класс InternetPaymentService и TerminalPaymentService). При этом
-#TerminalPaymentService не должен поддерживать проведение оплат по номеру телефона.
-class WebMoneyPayments(ABC):
+#Задание 2.
+#Рассмотрим принцип инверсии зависимостей. Исправьте следующий код таким
+#образом, чтобы классы и верхних, и нижних уровней зависели от одних и тех же
+#абстракций, а не от конкретных реализаций.
+#class AnonymousAuthentication:
+#def doAauthentication(self): pass
+#class GithubAuthentication:
+#def doAuthentication(self): pass
+#class FacebookAuthentication:
+#def doAuthentication(self): pass
+#class Permissions:
+#def __init__(self, auth: AnonymousAuthentication)
+#self.auth = auth
+#def getPermissions(self):
+#self.auth.doAuthentication()
+class Authentication(ABC):
     @abstractmethod
-    def payWebMoney(self):
+    def doAuthentication(self, name: str):
+        pass
+class AnonymousAuthentication(Authentication):
+    def doAuthentication(self, name: str):
+        print(f"{name}- вы прошли анонимную авторизацию.")
+        pass
+class GithubAuthentication(Authentication):
+    def doAuthentication(self, name: str):
+        print(f"{name}- вы прошли авторизацию в GitHub.")
+        pass
+class FacebookAuthentication(Authentication):
+    def doAuthentication(self, name: str):
+        print(f"{name}- вы прошли авторизацию в Facebook.")
         pass
 
-class CreditCardPayments(ABC):
-    @abstractmethod
-    def payCreditCard(self):
-        pass
+class Permissions:
+    def __init__(self, auth: Authentication):
+        self.auth = auth
 
-class PhoneNumberPayments(ABC):
-    @abstractmethod
-    def payPhoneNumber(self):
-        pass
-class InternetPaymentService(WebMoneyPayments, CreditCardPayments, PhoneNumberPayments):
-    def payWebMoney(self):
-        print("Оплата WebMoney через InternetPaymentService")
-
-    def payCreditCard(self):
-        print("Оплата кредитной картой через InternetPaymentService")
-
-    def payPhoneNumber(self):
-        print("Оплата номером телефона через InternetPaymentService")
-
-
-class TerminalPaymentService(WebMoneyPayments, CreditCardPayments):
-    def payWebMoney(self):
-        print("Оплата WebMoney через TerminalPaymentService")
-
-    def payCreditCard(self):
-        print("Оплата кредитной картой через TerminalPaymentService")
-
+    def getPermissions(self, name:str):
+        self.auth.doAuthentication(name)
 
 def execute_application():
-    # Оплата с помощью InternetPaymentService
-    internet_payment_service = InternetPaymentService()
-    internet_payment_service.payWebMoney()
-    internet_payment_service.payCreditCard()
-    internet_payment_service.payPhoneNumber()
-
-    # Оплата с помощью TerminalPaymentService
-    terminal_payment_service = TerminalPaymentService()
-    terminal_payment_service.payWebMoney()
-    terminal_payment_service.payCreditCard()
+    pass
 if __name__ =="__main__":
     execute_application()

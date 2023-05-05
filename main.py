@@ -39,6 +39,10 @@ class Permissions:
         self.auth.doAuthentication(name)
 
 def execute_application():
-    pass
+    facebook_auth = FacebookAuthentication()
+    facebook_auth.doAuthentication("Константин")
+
+    permissions = Permissions(facebook_auth)
+    permissions.getPermissions("Konstantin")
 if __name__ =="__main__":
     execute_application()

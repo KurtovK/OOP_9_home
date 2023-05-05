@@ -48,6 +48,15 @@ class TerminalPaymentService(WebMoneyPayments, CreditCardPayments):
 
 
 def execute_application():
-    pass
+    # Оплата с помощью InternetPaymentService
+    internet_payment_service = InternetPaymentService()
+    internet_payment_service.payWebMoney()
+    internet_payment_service.payCreditCard()
+    internet_payment_service.payPhoneNumber()
+
+    # Оплата с помощью TerminalPaymentService
+    terminal_payment_service = TerminalPaymentService()
+    terminal_payment_service.payWebMoney()
+    terminal_payment_service.payCreditCard()
 if __name__ =="__main__":
     execute_application()

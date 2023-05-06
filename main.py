@@ -5,11 +5,7 @@
 #наследникам методы, которые выводят информацию об объекте из классов
 #«Колесо», «Двигатель», «Двери» и т.п.
 
-class Car:
-    def __init__(self, brand: str, model: str , color: str):
-        self.brand = brand
-        self.model = model
-        self.color = color
+
 class Wheel:
     def __init__(self, size: int, material: str):
         self.size = size
@@ -33,7 +29,11 @@ class Door:
             print(f"Дверь {self.number} открыта")
         else:
             print(f"Дверь {self.number} закрыта")
-
+class Car:
+    def __init__(self, brand: str, model: str, color: str):
+        self.brand = brand
+        self.model = model
+        self.color = color
 class SportCar(Car, Wheel, Engine):
     def __init__(self, brand: str, model: str, color: str, size: int, material: str, power: int, fuel_type: str):
         Car.__init__(self, brand, model, color)
@@ -57,7 +57,7 @@ class SUV(Car, Wheel, Door):
         Door.door_info(self)
 
 class Truck(Car, Wheel):
-    def __init__(self, brand: str, model: str, color: str, size: float, material: str, max_load: int):
+    def __init__(self, brand: str, model: str, color: str, size: int, material: str, max_load: int):
         Car.__init__(self, brand, model, color)
         Wheel.__init__(self, size, material)
         self.max_load = max_load

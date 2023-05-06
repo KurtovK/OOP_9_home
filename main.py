@@ -28,6 +28,22 @@ class Calculator:
     def to_decimal(self):
         return str(int(self.__number.value, self.__number.base))
 def executer_application():
-    pass
+    number1 = Number('1101', 2)
+    number2 = Number('ABC', 16)
+
+    calculator1 = Calculator(number1)
+    calculator2 = Calculator(number2)
+
+    print(f'Число {number1.value} в системе счисления {number1.base} в восьмеричной системе: {calculator1.to_octal()}')
+    print(
+        f'Число {number1.value} в системе счисления {number1.base} в шестнадцатеричной системе: {calculator1.to_hexadecimal()}')
+    print(f'Число {number1.value} в системе счисления {number1.base} в двоичной системе: {calculator1.to_binary()}')
+    print(f'Число {number1.value} в системе счисления {number1.base} в десятичной системе: {calculator1.to_decimal()}')
+
+    print(f'Число {number2.value} в системе счисления {number2.base} в восьмеричной системе: {calculator2.to_octal()}')
+    print(
+        f'Число {number2.value} в системе счисления {number2.base} в шестнадцатеричной системе: {calculator2.to_hexadecimal()}')
+    print(f'Число {number2.value} в системе счисления {number2.base} в двоичной системе: {calculator2.to_binary()}')
+    print(f'Число {number2.value} в системе счисления {number2.base} в десятичной системе: {calculator2.to_decimal()}')
 if __name__ =="__main__":
     executer_application()

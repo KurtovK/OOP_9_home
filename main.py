@@ -44,6 +44,37 @@ class CashRegister:
     def clear(self):
         self.items = []
 def executer_application():
-    pass
+    register = CashRegister()
+
+    item1 = Retailitem('Шоколад', 5, 100)
+    item2 = Retailitem('Кофе', 3, 200)
+    item3 = Retailitem('Чай', 10, 50)
+
+    register.purchase_item(item1)
+    register.purchase_item(item2)
+    register.purchase_item(item3)
+
+    print('Выбранные товары:')
+    register.show_items()
+    print(f'Общая стоимость: {register.get_total()} руб.')
+
+    register.clear()  # очистка списка товаров
+
+    # Попросим пользователя выбрать товары для покупки
+
+    print('Добро пожаловать в магазин!')
+    while True:
+        choice = input('Введите название товара или "расчет", чтобы завершить покупки: ')
+        if choice.lower() == "расчет":
+            break
+        description = choice
+        quantity = int(input('Введите количество: '))
+        price = float(input('Введите цену: '))
+        item = Retailitem(description, quantity, price)
+        register.purchase_item(item)
+
+    print('Выбранные товары:')
+    register.show_items()
+    print(f'Общая стоимость: {register.get_total()} руб.')
 if __name__ =="__main__":
     executer_application()

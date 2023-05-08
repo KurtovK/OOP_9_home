@@ -104,6 +104,25 @@ class Stadium:
                f"Страна: {self.country}\n"\
                f"Город:{self.city}\n"\
                f"Вместимость:{self.capacity}\n"
+
+
+
+    # Метод для создания объекта класса на основе словаря
+    @classmethod
+    def from_dict(cls, stadium_dict):
+        return cls(name=stadium_dict['name'],
+                   opening_date=stadium_dict['opening_date'],
+                   country=stadium_dict['country'],
+                   city=stadium_dict['city'],
+                   capacity=stadium_dict['capacity'])
+
+    # Метод для преобразования объекта класса в словарь
+    def to_dict(self):
+        return {"name": self.name,
+                "opening_date": self.opening_date,
+                "country": self.country,
+                "city": self.city,
+                "capacity": self.capacity}
 def execute_application():
     pass
 

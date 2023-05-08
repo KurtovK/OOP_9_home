@@ -29,7 +29,22 @@ class Car:
                f"Объем двигателя: {self.engine_volume}\n" \
                f"Цвет машины: {self.color}\n" \
                f"Цена: {self.price}\n"
+    def to_dict(self):
+        return {"model": self.model,
+                "year": self.year,
+                "manufacturer": self.manufacturer,
+                "engine_volume": self.engine_volume,
+                "color": self.color,
+                "price": self.price}
 
+    @classmethod
+    def from_dict(cls, car_dict):
+        return cls(model=car_dict['model'],
+                   year=car_dict['year'],
+                   manufacturer=car_dict['manufacturer'],
+                   engine_volume=car_dict['engine_volume'],
+                   color=car_dict['color'],
+                   price=car_dict['price'])
 
 
 def execute_application():

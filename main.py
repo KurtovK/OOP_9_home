@@ -68,6 +68,20 @@ class Book:
                f"Год выпуска: {self.year}\n"\
                f"Жанр: {self.genre}\n" \
                f"Цена: {self.price}\n"
+
+    # Метод для создания объекта класса на основе словаря
+    @classmethod
+    def from_dict(cls, book_dict: Dict[str, any]) -> 'Book':
+        return cls(book_dict['title'], book_dict['author'], book_dict['year'],
+                   book_dict['genre'], book_dict['price'])
+
+    # Метод для преобразования объекта класса в словарь
+    def to_dict(self) -> Dict[str, any]:
+        return {"title": self.title,
+                "author": self.author,
+                "year": self.year,
+                "genre": self.genre,
+                "price": self.price}
 def execute_application():
     pass
 

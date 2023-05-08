@@ -82,6 +82,28 @@ class Book:
                 "year": self.year,
                 "genre": self.genre,
                 "price": self.price}
+#Задание 3
+#К уже реализованному классу «Стадион» добавьте
+#возможность упаковки и распаковки данных с использованием json и pickle.
+class Stadium:
+    name: str
+    opening_date: Dict[str, str]
+    country: str
+    city: str
+    capacity: int
+    def __init__(self, name: str, opening_date: Dict[str, str], country: str, city:str, capacity: int):
+        self.name = name
+        self.opening_date = opening_date
+        self.country = country
+        self.city = city
+        self.capacity = capacity
+
+    def __str__(self):
+        return f"Название: {self.name}\n"\
+               f"Дата открытия:{self.opening_date}\n"\
+               f"Страна: {self.country}\n"\
+               f"Город:{self.city}\n"\
+               f"Вместимость:{self.capacity}\n"
 def execute_application():
     pass
 

@@ -124,9 +124,48 @@ class Stadium:
                 "city": self.city,
                 "capacity": self.capacity}
 def execute_application():
-    pass
-
-
+    # Задание 1.
+    car1 = Car('Sorento', 2021, 'KIA', 2.5, 'красный', 4079900)
+    print(car1)
+    # Упаковка и распаковка данных с использованием json
+    car1_dict = car1.to_dict()
+    car1_json = json.dumps(car1_dict)
+    print(car1_json)
+    car1_dict_from_json = json.loads(car1_json)
+    car1_from_json = Car.from_dict(car1_dict_from_json)
+    print(car1_from_json)
+    # Упаковка и распаковка данных с использованием pickle
+    car1_pickle = pickle.dumps(car1)
+    car1_from_pickle = pickle.loads(car1_pickle)
+    print(car1_from_pickle)
+    # Задание 2.
+    book1 = Book('Мастер и Маргарита', 'Михаил Булгаков', 1966, 'роман', 1500)
+    print(book1)
+    # Упаковка и распаковка данных с использованием json
+    book1_dict = book1.to_dict()
+    book1_json = json.dumps(book1_dict)
+    print(book1_json)
+    book1_dict_from_json = json.loads(book1_json)
+    book1_from_json = Book.from_dict(book1_dict_from_json)
+    print(book1_from_json)
+    # Упаковка и распаковка данных с использованием pickle
+    book1_pickle = pickle.dumps(book1)
+    book1_from_pickle = pickle.loads(book1_pickle)
+    print(book1_from_pickle)
+    # Задание 3.
+    stadium = Stadium('Шинник', {'день': '01', 'месяц': '01', 'год': '1957'}, 'Россия', 'Ярославль', 22990)
+    print(stadium)
+    # Упаковка и распаковка данных с использованием json
+    stadium_dict = stadium.to_dict()
+    stadium_json = json.dumps(stadium_dict)
+    print(stadium_json)
+    stadium_dict_from_json = json.loads(stadium_json)
+    stadium_from_json = Stadium.from_dict(stadium_dict_from_json)
+    print(stadium_from_json)
+    # Упаковка и распаковка данных с использованием pickle
+    stadium_pickle = pickle.dumps(stadium)
+    stadium_from_pickle = pickle.loads(stadium_pickle)
+    print(stadium_from_pickle)
 
 
 

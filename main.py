@@ -2,9 +2,8 @@ from typing import Dict
 import json
 import pickle
 #Задание 1.
-#Реализуйте класс «Автомобиль». Необходимо хранить в полях класса:
-#название модели, год выпуска, производителя, объем двигателя, цвет машины,
-#цену. Реализуйте конструктор по умолчанию и метод для вывода данных.
+#К уже реализованному классу «Автомобиль» добавьте
+#возможность упаковки и распаковки данных с использованием json и pickle.
 class Car:
     model: str
     year: int
@@ -45,8 +44,30 @@ class Car:
                    engine_volume=car_dict['engine_volume'],
                    color=car_dict['color'],
                    price=car_dict['price'])
+#Задание 2
+#К уже реализованному классу «Книга» добавьте возможность упаковки и распаковки данных
+# с использованием json и pickle.
+class Book:
+    title: str
+    author: str
+    year: int
+    genre: str
+    price: float
+    # Конструктор по умолчанию
+    def __init__(self, title: str, author: str, year: int, genre: str, price: float):
+        self.title = title
+        self.author = author
+        self.year = year
+        self.genre = genre
+        self.price = price
 
-
+    # Метод для вывода данных
+    def __str__(self):
+        return f"Название книги: {self.title}\n" \
+               f"Автор: {self.author}\n" \
+               f"Год выпуска: {self.year}\n"\
+               f"Жанр: {self.genre}\n" \
+               f"Цена: {self.price}\n"
 def execute_application():
     pass
 

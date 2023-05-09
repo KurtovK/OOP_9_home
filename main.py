@@ -1,7 +1,7 @@
 import pickle
-#Задание 1
-#Создайте класс «Самолет».Наполните его необходимыми характеристиками и методами. Реализуйте упаковку и
-#распаковку объектов класса «Самолет» с использованием модуля pickle.
+import json
+#Задание 2
+#Добавьте к заданию 1 возможность упаковки/распаковки с использованием модуля json.
 class Airplane:
     def __init__(self, model, manufacturer, max_speed, max_altitude):
         self.model = model
@@ -28,12 +28,25 @@ class Airplane:
         with open(file_path, "rb") as f:
             data = pickle.load(f)
             self.from_dict(data)
+
+    def save_to_json(self, file_path):
+        with open(file_path, "w") as f:
+            json.dump(self.to_dict(), f)
+
+    def load_from_json(self, file_path):
+        with open(file_path, "r") as f:
+            data = json.load(f)
+            self.from_dict(data)
 def  execute_application():
     airplane = Airplane("Boeing 747", "Boeing", 920, 13100)
     airplane.save_to_pickle("airplane.pickle")
+    airplane.save_to_json("airplane.json")
 
     new_airplane = Airplane("", "", 0, 0)
     new_airplane.load_from_pickle("airplane.pickle")
+    print(new_airplane)
+
+    new_airplane.load_from_json("airplane.json")
     print(new_airplane)
 if __name__=="__main__":
     execute_application()

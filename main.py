@@ -40,9 +40,13 @@ class Airplane:
 def  execute_application():
     airplane = Airplane("Boeing 747", "Boeing", 920, 13100)
     airplane.save_to_pickle("airplane.pickle")
+    airplane.save_to_json("airplane.json")
 
     new_airplane = Airplane("", "", 0, 0)
     new_airplane.load_from_pickle("airplane.pickle")
+    print(new_airplane)
+
+    new_airplane.load_from_json("airplane.json")
     print(new_airplane)
 if __name__=="__main__":
     execute_application()

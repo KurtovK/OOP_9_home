@@ -10,7 +10,7 @@ import math
 # Деление дробей.
 # Сравнение дробей
 #В т.ч. Перегрузка операций должна работать с целыми числам
-class Fraction:
+class Fraction():
     def __init__(self, numerator, denominator):
         gcd = math.gcd(numerator, denominator)
         self.numerator = numerator // gcd
@@ -61,6 +61,25 @@ class Fraction:
     def __str__(self):
         return f"{self.numerator}/{self.denominator}"
 def  execute_application():
-    pass
+    f1 = Fraction(1, 2)
+    f2 = Fraction(3, 4)
+    f3 = Fraction(2, 4)
+    print(f"Операция сложения двух дробей: {f1} + {f2} = {f1 + f2}")
+    print(f"Операция вычитания двух дробей: {f2} - {f1} = {f2 - f1}")
+    print(f"Операция умножения двух дробей: {f1} * {f2} = {f1 * f2}")
+    print(f"Операция деления двух дробей: {f1} / {f2} = {f1 / f2}")
+    print(f"Сравнение двух дробей: {f1} == {f3} - {f1 == f3}")
+    print(f"Сравнение двух дробей: {f1} < {f2} - {f1 < f2}")
+    print(f"Сравнение двух дробей: {f2} > {f3} - {f2 > f3}")
+
+    # Операции с целыми числами:
+    f4 = Fraction(1, 2)
+    print(f"Операция сложения дроби и целого числа: {f4} + 3 = {f4 + 3}")
+
+    f5 = Fraction(25, 5)
+    print(f"Сравнение дроби и целого числа: {f5} == 5 - {f5 == 5}")
+
+    f6 = Fraction(8, 5)
+    print(f"Сравнение дроби и целого числа: {f6} > 2 - {f6 > 2}")
 if __name__=="__main__":
     execute_application()

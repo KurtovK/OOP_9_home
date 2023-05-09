@@ -67,15 +67,32 @@ class Fraction:
     def unpack(filename):
         with open(filename, "rb") as file:
             return pickle.load(file)
+
     def pack_json(self, filename):
         with open(filename, "w") as file:
-            json.dump({"numerator": self.numerator, "denominator": self.denominator}, file)
+            json.dump({"числитель": self.numerator, "знаменатель": self.denominator}, file)
+
     @staticmethod
     def unpack_json(filename):
         with open(filename, "r") as file:
             data = json.load(file)
-            return Fraction(data["numerator"], data["denominator"])
+            return Fraction(data["числитель"], data["знаменатель"])
 def  execute_application():
-    pass
+    a = Fraction(1, 2)
+    b = Fraction(3, 4)
+    # Упаковка объекта в файл с помощью модуля pickle
+    a.pack("fraction.pickle")
+    # Распаковка объекта из файла с помощью модуля pickle
+    c = Fraction.unpack("fraction.pickle")
+    # Проверка результатов
+    print(c)
+    print(a + b)
+    # Упаковка объекта в файл с помощью модуля json
+    a.pack_json("fraction.json")
+    # Упаковка объекта в файл с помощью модуля json
+    d = Fraction.unpack_json("fraction.json")
+    # Проверка результатов
+    print(d)
+    print(a - b)
 if __name__=="__main__":
     execute_application()

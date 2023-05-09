@@ -35,6 +35,15 @@ class Clock:
             data = pickle.load(f)
             self.from_dict(data)
 def  execute_application():
-    pass
+    clock = Clock(12, 30, 45)
+    clock.save_to_json("clock.json")
+    clock.save_to_pickle("clock.pickle")
+
+    new_clock = Clock()
+    new_clock.load_from_json("clock.json")
+    print(new_clock)
+
+    new_clock.load_from_pickle("clock.pickle")
+    print(new_clock)
 if __name__=="__main__":
     execute_application()

@@ -7,6 +7,33 @@ class Clock:
         self.hours = hours
         self.minutes = minutes
         self.seconds = seconds
+    def __str__(self):
+        return f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}"
+
+    def to_dict(self):
+        return {"hours": self.hours, "minutes": self.minutes, "seconds": self.seconds}
+    def from_dict(self, dict_data):
+        self.hours = dict_data["hours"]
+        self.minutes = dict_data["minutes"]
+        self.seconds = dict_data["seconds"]
+
+    def save_to_json(self, file_path):
+        with open(file_path, "w") as f:
+            json.dump(self.to_dict(), f)
+
+    def load_from_json(self, file_path):
+        with open(file_path, "r") as f:
+            data = json.load(f)
+            self.from_dict(data)
+
+    def save_to_pickle(self, file_path):
+        with open(file_path, "wb") as f:
+            pickle.dump(self.to_dict(), f)
+
+    def load_from_pickle(self, file_path):
+        with open(file_path, "rb") as f:
+            data = pickle.load(f)
+            self.from_dict(data)
 def  execute_application():
     pass
 if __name__=="__main__":

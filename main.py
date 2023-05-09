@@ -1,52 +1,98 @@
 import pickle
 import json
-#Задание 2
-#Добавьте к заданию 1 возможность упаковки/распаковки с использованием модуля json.
-class Airplane:
-    def __init__(self, model, manufacturer, max_speed, max_altitude):
-        self.model = model
-        self.manufacturer = manufacturer
-        self.max_speed = max_speed
-        self.max_altitude = max_altitude
+#Задание 3
+#К уже реализованному классу «Дробь» добавьте возможность упаковки и распаковки данных с использованием json и pickle.
+class Fraction:
+    def __init__(self, numerator, denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+    def __add__(self, other):
+        if isinstance(other, Fraction):
+            return Fraction(self.numerator * other.denominator + other.numerator * self.denominator,
+                            self.denominator * other.denominator)
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __sub__(self, other):
+        if isinstance(other, Fraction):
+            return Fraction(self.numerator * other.denominator - other.numerator * self.denominator,
+                            self.denominator * other.denominator)
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __mul__(self, other):
+        if isinstance(other, Fraction):
+            return Fraction(self.numerator * other.numerator, self.denominator * other.denominator)
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __truediv__(self, other):
+        if isinstance(other, Fraction):
+            return Fraction(self.numerator * other.denominator, self.denominator * other.numerator)
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __eq__(self, other):
+        if isinstance(other, Fraction):
+            return self.numerator * other.denominator == other.numerator * self.denominator
+        else:
+            return False
+    def __ne__(self, other):
+        if isinstance(other, Fraction):
+            return self.numerator * other.denominator != other.numerator * self.denominator
+        else:
+            return True
+    def __lt__(self, other):
+        if isinstance(other, Fraction):
+            return self.numerator * other.denominator < other.numerator * self.denominator
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __le__(self, other):
+        if isinstance(other, Fraction):
+            return self.numerator * other.denominator <= other.numerator * self.denominator
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __gt__(self, other):
+        if isinstance(other, Fraction):
+            return self.numerator * other.denominator > other.numerator * self.denominator
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
+    def __ge__(self, other):
+        if isinstance(other, Fraction):
+            return self.numerator * other.denominator >= other.numerator * self.denominator
+        else:
+            raise TypeError("Операция поддерживается только для объектов класса 'Дробь'")
     def __str__(self):
-        return f"Модель: {self.model}\nПроизводитель: {self.manufacturer}\nМаксимальная скорость: {self.max_speed} км/ч\nМаксимальная высота полета: {self.max_altitude} м"
+        return f"{self.numerator}/{self.denominator}"
+    def pack(self, filename):
+        with open(filename, "wb") as file:
+            pickle.dump(self, file)
+    @staticmethod
+    def unpack(filename):
+        with open(filename, "rb") as file:
+            return pickle.load(file)
 
-    def to_dict(self):
-        return {"model": self.model, "manufacturer": self.manufacturer, "max_speed": self.max_speed, "max_altitude": self.max_altitude}
+    def pack_json(self, filename):
+        with open(filename, "w") as file:
+            json.dump({"числитель": self.numerator, "знаменатель": self.denominator}, file)
 
-    def from_dict(self, dict_data):
-        self.model = dict_data["model"]
-        self.manufacturer = dict_data["manufacturer"]
-        self.max_speed = dict_data["max_speed"]
-        self.max_altitude = dict_data["max_altitude"]
-
-    def save_to_pickle(self, file_path):
-        with open(file_path, "wb") as f:
-            pickle.dump(self.to_dict(), f)
-
-    def load_from_pickle(self, file_path):
-        with open(file_path, "rb") as f:
-            data = pickle.load(f)
-            self.from_dict(data)
-
-    def save_to_json(self, file_path):
-        with open(file_path, "w") as f:
-            json.dump(self.to_dict(), f)
-
-    def load_from_json(self, file_path):
-        with open(file_path, "r") as f:
-            data = json.load(f)
-            self.from_dict(data)
+    @staticmethod
+    def unpack_json(filename):
+        with open(filename, "r") as file:
+            data = json.load(file)
+            return Fraction(data["числитель"], data["знаменатель"])
 def  execute_application():
-    airplane = Airplane("Boeing 747", "Boeing", 920, 13100)
-    airplane.save_to_pickle("airplane.pickle")
-    airplane.save_to_json("airplane.json")
-
-    new_airplane = Airplane("", "", 0, 0)
-    new_airplane.load_from_pickle("airplane.pickle")
-    print(new_airplane)
-
-    new_airplane.load_from_json("airplane.json")
-    print(new_airplane)
+    a = Fraction(1, 2)
+    b = Fraction(3, 4)
+    # Упаковка объекта в файл с помощью модуля pickle
+    a.pack("fraction.pickle")
+    # Распаковка объекта из файла с помощью модуля pickle
+    c = Fraction.unpack("fraction.pickle")
+    # Проверка результатов
+    print(c)
+    print(a + b)
+    # Упаковка объекта в файл с помощью модуля json
+    a.pack_json("fraction.json")
+    # Упаковка объекта в файл с помощью модуля json
+    d = Fraction.unpack_json("fraction.json")
+    # Проверка результатов
+    print(d)
+    print(a - b)
 if __name__=="__main__":
     execute_application()

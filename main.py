@@ -14,7 +14,20 @@ class Airplane:
     def to_dict(self):
         return {"model": self.model, "manufacturer": self.manufacturer, "max_speed": self.max_speed, "max_altitude": self.max_altitude}
 
+    def from_dict(self, dict_data):
+        self.model = dict_data["model"]
+        self.manufacturer = dict_data["manufacturer"]
+        self.max_speed = dict_data["max_speed"]
+        self.max_altitude = dict_data["max_altitude"]
 
+    def save_to_pickle(self, file_path):
+        with open(file_path, "wb") as f:
+            pickle.dump(self.to_dict(), f)
+
+    def load_from_pickle(self, file_path):
+        with open(file_path, "rb") as f:
+            data = pickle.load(f)
+            self.from_dict(data)
 def  execute_application():
     pass
 if __name__=="__main__":

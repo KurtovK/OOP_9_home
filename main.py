@@ -29,6 +29,11 @@ class Airplane:
             data = pickle.load(f)
             self.from_dict(data)
 def  execute_application():
-    pass
+    airplane = Airplane("Boeing 747", "Boeing", 920, 13100)
+    airplane.save_to_pickle("airplane.pickle")
+
+    new_airplane = Airplane("", "", 0, 0)
+    new_airplane.load_from_pickle("airplane.pickle")
+    print(new_airplane)
 if __name__=="__main__":
     execute_application()

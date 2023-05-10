@@ -1,3 +1,4 @@
+from random import randint
 #Задание 1.
 #Используя механизм множественного наследования разработайте класс
 #«Автомобиль». Создайте несколько классов-наследников согласно
@@ -5,96 +6,119 @@
 #наследникам методы, которые выводят информацию об объекте из классов
 #«Колесо», «Двигатель», «Двери» и т.п.
 
+class Conditioner:
+    def __init__(self):
+        self.__status = False
+    @property
+    def status_conditioner(self):
+        return self.__status
+    @status_conditioner.setter
+    def status_conditioner(self, status: bool):
+        self.__status = status
+    def conditioner_info(self):
+        return "Кондиционер " + ("включён." if self.__status else "выключен.")
+class StatusConditionerMixin:
+    @staticmethod
+    def get_status_conditioner(conditioner: Conditioner):
+        print(conditioner.conditioner_info())
 
-class Wheel:
-    def __init__(self, size: int, material: str):
-        self.size = size
-        self.material = material
-    def wheel_info(self):
-        print(f"Размер: {self.size}\nМатериал: {self.material}")
+
 class Engine:
-    def __init__(self, power: int, fuel_type: str):
-        self.power = power
-        self.fuel_type = fuel_type
-
+    def __init__(self):
+        self.__status_engine = False
+    @property
+    def state(self):
+        return self.__status_engine
+    @state.setter
+    def state(self, status: bool):
+        self.__status_engine = status
     def engine_info(self):
-        print(f"Мощность: {self.power}\nТип топлива: {self.fuel_type}")
-class Door:
-    def __init__(self, number: int, isopen: bool):
-        self.number = number
-        self.isopen = isopen
+        return "Двигатель " + ("заведен." if self.__status_engine else "не заведен.")
+class EngineConditionMixin:
+    @staticmethod
+    def get_status_engine(engine: Engine):
+        print(engine.engine_info())
 
-    def door_info(self):
-        if self.isopen:
-            print(f"Дверь {self.number} открыта")
-        else:
-            print(f"Дверь {self.number} закрыта")
+class RadioWave:
+    MIN = 87.5
+    MAX = 108.0
+    def __init__(self):
+        self.__value = randint(875, 1080) / 10
+    @classmethod
+    def check_current_wave(cls, value: float = 0):
+        if isinstance(value, float | int) and RadioWave.MIN <= value <= RadioWave.MAX:
+            return "Нормальный диапазон FM радио"
+        raise Exception(f"Некорректное значение FM радио: {value}")
+class RadioWaveMixin:
+    @staticmethod
+    def check_current_wave(wave: RadioWave, value: float = RadioWave.MIN):
+        return wave.check_current_wave(value)
+
+
 class Car:
-    def __init__(self, brand: str, model: str, color: str):
-        self.brand = brand
-        self.model = model
-        self.color = color
-class SportCar(Car, Wheel, Engine):
-    def __init__(self, brand: str, model: str, color: str, size: int, material: str, power: int, fuel_type: str):
-        Car.__init__(self, brand, model, color)
-        Wheel.__init__(self, size, material)
-        Engine.__init__(self, power, fuel_type)
+    def __init__(self, car_model: str, car_body: str, color: str, year: int):
+        self.__car_model = car_model
+        self.__car_body = car_body
+        self.__color = color
+        self.__year = year
+    def info(self):
+        print(f"Модель: {self.__car_model}, Кузов: {self.__car_body}, Цвет: {self.__color}, Год выпуска: {self.__year},"
+              , end=" ")
 
-    def sportcar_info(self):
-        print(f"Бренд: {self.brand}\nМодель: {self.model}\nЦвет: {self.color}")
-        Wheel.wheel_info(self)
-        Engine.engine_info(self)
+class CarGasEngine(Car, EngineConditionMixin, RadioWaveMixin, StatusConditionerMixin):
+    def __init__(self, car_model: str, car_body: str, color: str, year: int, power: str = None):
+        super().__init__(car_model, car_body, color, year)
+        self.__power = power
+    def info(self):
+        super().info()
+        print(f"Марка бензина: {self.__power}")
 
-class SUV(Car, Wheel, Door):
-    def __init__(self, brand: str, model: str, color: str, size: int, material: str, number: int, isopen: bool):
-        Car.__init__(self, brand, model, color)
-        Wheel.__init__(self, size, material)
-        Door.__init__(self, number, isopen)
+class CarDieselEngine(Car, EngineConditionMixin, RadioWaveMixin, StatusConditionerMixin):
+    def __init__(self, brand: str, model: str, color: str, year: int, power: str):
+        super().__init__(brand, model, color, year)
+        self.__power = power
+    def info(self):
+        super().info()
+        print(f"Тип дизельного топлива: {self.__power}")
 
-    def suv_info(self):
-        print(f"Бренд: {self.brand}\nМодель: {self.model}\nЦвет: {self.color}")
-        Wheel.wheel_info(self)
-        Door.door_info(self)
-
-class Truck(Car, Wheel):
-    def __init__(self, brand: str, model: str, color: str, size: int, material: str, max_load: int):
-        Car.__init__(self, brand, model, color)
-        Wheel.__init__(self, size, material)
-        self.max_load = max_load
-
-    def truck_info(self):
-        print(f"Бренд: {self.brand}\nМодель: {self.model}\nЦвет: {self.color}")
-        Wheel.wheel_info(self)
-        print(f"Максимальная нагрузка: {self.max_load} кг")
-
-class ElectricCar(Car, Wheel, Engine):
-    def __init__(self, brand: str, model: str, color: str, size: int, material: str, power: int, fuel_type: str,
-                 batterycapacity: int):
-        Car.__init__(self, brand, model, color)
-        Wheel.__init__(self, size, material)
-        Engine.__init__(self, power, fuel_type)
-        self.batterycapacity = batterycapacity
-
-    def electriccar_info(self):
-        print(f"Бренд: {self.brand}\nМодель: {self.model}\nЦвет: {self.color}")
-        Wheel.wheel_info(self)
-        Engine.engine_info(self)
-        print(f"Емкость батареи: {self.batterycapacity} кВтч")
 def execute_application():
-    sportcar = SportCar("Ferrari", "488 GTB", "Красный", 20, "Углеродное волокно", 670, "Бензин")
-    suv = SUV("Jeep", "Wrangler", "Зеленый", 18, "Сталь", 4, True)
-    electriccar = ElectricCar("Tesla", "Model S", "Черный", 19, "Алюминий", 500, "Электричество", 100)
-    truck = Truck("Volvo", "VNL 860", "Белый", 22.5, "Резина", 20000)
+    gas_car = CarGasEngine("Ferrari", "488 GTB", "Красный", 2015, "Бензин 95")
+    gas_car.info()
 
-    # Вывод информации о каждом объекте
-    print("Спортивная машина:")
-    sportcar.sportcar_info()
-    print("\nВнедорожник:")
-    suv.suv_info()
-    print("\nЭлектромобиль:")
-    electriccar.electriccar_info()
-    print("\nГрузовик:")
-    truck.truck_info()
+    # Проверка двигателя
+    gas_engine = Engine()
+    gas_car.get_status_engine(gas_engine)
 
-if __name__ =="__main__":
+    # Проверка радио
+    gas_car_tyre = RadioWave()
+    try:
+        print(gas_car.check_current_wave(gas_car_tyre, 66.6))
+    except Exception as e:
+        print(e)
+
+    # Проверка кондиционера
+    conditioner = Conditioner()
+    gas_car.get_status_conditioner(conditioner)
+    print()
+
+    # Машина с дизельным двигателем
+    diesel_car = CarDieselEngine("Jeep", "Wrangler", "Зеленый", 2021, "ДТЛ")
+    diesel_car.info()
+
+    # Проверка статуса двигателя
+    diesel_engine = Engine()
+    diesel_engine.state = True
+    diesel_car.get_status_engine(diesel_engine)
+    # Проверка радио
+    diesel_car_radio = RadioWave()
+    try:
+        print(diesel_car.check_current_wave(diesel_car_radio, 87.9))
+    except Exception as e:
+        print(e)
+
+    # Проверка кондиционера
+    conditioner.status_conditioner = True
+    diesel_car.get_status_conditioner(conditioner)
+
+if __name__ == '__main__':
     execute_application()

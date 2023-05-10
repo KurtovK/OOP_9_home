@@ -52,3 +52,13 @@ class RadioWaveMixin:
     @staticmethod
     def check_current_wave(wave: RadioWave, value: float = RadioWave.MIN):
         return wave.check_current_wave(value)
+
+class Car:
+    def __init__(self, car_model: str, car_body: str, color: str, year: int):
+        self.__car_model = car_model
+        self.__car_body = car_body
+        self.__color = color
+        self.__year = year
+    def info(self):
+        print(f"Модель: {self.__car_model}, Кузов: {self.__car_body}, Цвет: {self.__color}, Год выпуска: {self.__year},"
+              , end=" ")

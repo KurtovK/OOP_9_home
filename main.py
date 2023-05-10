@@ -37,3 +37,18 @@ class EngineConditionMixin:
     @staticmethod
     def get_status_engine(engine: Engine):
         print(engine.engine_info())
+
+class RadioWave:
+    MIN = 87.5
+    MAX = 108.0
+    def __init__(self):
+        self.__value = randint(875, 1080) / 10
+    @classmethod
+    def check_current_wave(cls, value: float = 0):
+        if isinstance(value, float | int) and RadioWave.MIN <= value <= RadioWave.MAX:
+            return "Нормальный диапазон FM радио"
+        raise Exception(f"Некорректное значение FM радио: {value}")
+class RadioWaveMixin:
+    @staticmethod
+    def check_current_wave(wave: RadioWave, value: float = RadioWave.MIN):
+        return wave.check_current_wave(value)

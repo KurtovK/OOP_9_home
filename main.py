@@ -22,6 +22,7 @@ class StatusConditionerMixin:
     def get_status_conditioner(conditioner: Conditioner):
         print(conditioner.conditioner_info())
 
+
 class Engine:
     def __init__(self):
         self.__status_engine = False
@@ -53,6 +54,7 @@ class RadioWaveMixin:
     def check_current_wave(wave: RadioWave, value: float = RadioWave.MIN):
         return wave.check_current_wave(value)
 
+
 class Car:
     def __init__(self, car_model: str, car_body: str, color: str, year: int):
         self.__car_model = car_model
@@ -71,11 +73,52 @@ class CarGasEngine(Car, EngineConditionMixin, RadioWaveMixin, StatusConditionerM
         super().info()
         print(f"Марка бензина: {self.__power}")
 
-# Машина с дизельным двигателем (Дочерний класс от класса Car)
 class CarDieselEngine(Car, EngineConditionMixin, RadioWaveMixin, StatusConditionerMixin):
     def __init__(self, brand: str, model: str, color: str, year: int, power: str):
         super().__init__(brand, model, color, year)
         self.__power = power
     def info(self):
         super().info()
-        print(f"Тип дизельного топлива: {self.__power}"
+        print(f"Тип дизельного топлива: {self.__power}")
+
+def execute_application():
+    gas_car = CarGasEngine("Ferrari", "488 GTB", "Красный", 2015, "Бензин 95")
+    gas_car.info()
+
+    # Проверка двигателя
+    gas_engine = Engine()
+    gas_car.get_status_engine(gas_engine)
+
+    # Проверка радио
+    gas_car_tyre = RadioWave()
+    try:
+        print(gas_car.check_current_wave(gas_car_tyre, 66.6))
+    except Exception as e:
+        print(e)
+
+    # Проверка кондиционера
+    conditioner = Conditioner()
+    gas_car.get_status_conditioner(conditioner)
+    print()
+
+    # Машина с дизельным двигателем
+    diesel_car = CarDieselEngine("Jeep", "Wrangler", "Зеленый", 2021, "ДТЛ")
+    diesel_car.info()
+
+    # Проверка статуса двигателя
+    diesel_engine = Engine()
+    diesel_engine.state = True
+    diesel_car.get_status_engine(diesel_engine)
+    # Проверка радио
+    diesel_car_radio = RadioWave()
+    try:
+        print(diesel_car.check_current_wave(diesel_car_radio, 87.9))
+    except Exception as e:
+        print(e)
+
+    # Проверка кондиционера
+    conditioner.status_conditioner = True
+    diesel_car.get_status_conditioner(conditioner)
+
+if __name__ == '__main__':
+    execute_application()

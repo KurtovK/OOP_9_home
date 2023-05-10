@@ -62,12 +62,20 @@ class Car:
     def info(self):
         print(f"Модель: {self.__car_model}, Кузов: {self.__car_body}, Цвет: {self.__color}, Год выпуска: {self.__year},"
               , end=" ")
-# Машина с бензиновым двигателем (Дочерний класс от класса Car)
+
 class CarGasEngine(Car, EngineConditionMixin, RadioWaveMixin, StatusConditionerMixin):
     def __init__(self, car_model: str, car_body: str, color: str, year: int, power: str = None):
         super().__init__(car_model, car_body, color, year)
         self.__power = power
-
     def info(self):
         super().info()
         print(f"Марка бензина: {self.__power}")
+
+# Машина с дизельным двигателем (Дочерний класс от класса Car)
+class CarDieselEngine(Car, EngineConditionMixin, RadioWaveMixin, StatusConditionerMixin):
+    def __init__(self, brand: str, model: str, color: str, year: int, power: str):
+        super().__init__(brand, model, color, year)
+        self.__power = power
+    def info(self):
+        super().info()
+        print(f"Тип дизельного топлива: {self.__power}"

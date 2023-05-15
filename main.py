@@ -10,11 +10,10 @@ class InitializationValueError(Exception):
 
 class Circle:
     def __init__(self, radius: float):
-        self.__radius = self.validate_radius(radius)
-        self.__radius = radius
+        self.__radius = self.__validate_radius(radius)
         self.__circumference = 2 * pi * self.__radius
 
-    def validate_radius(self, radius: float):
+    def __validate_radius(self, radius: float):
         if radius <= 0:
             raise InitializationValueError("Радиус должен быть больше нуля.")
         return radius
@@ -50,7 +49,13 @@ class Circle:
         return self.__circumference >= other.__circumference
 
     def __hash__(self):
-        return hash((self.__radius, self.__circumference))
+        return hash(self.__radius)
+
+    def get_radius(self):
+        return self.__radius
+
+    def get_circumference(self):
+        return self.__circumference
 
 def execute_application():
     c1 = Circle(5)

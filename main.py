@@ -6,9 +6,7 @@
 #Сравнение двух квартир по стоимости (операции >, <, <=, >=).
 class Flat:
     def __init__(self, square: float, price: float):
-        self.__square = square
         self.__square = self.__validate_square(square)
-        self.__price = price
         self.__price = self.__validate_price(price)
 
     def __validate_square(self, square: float):

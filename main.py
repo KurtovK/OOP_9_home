@@ -15,7 +15,6 @@ class InitializationValueError(Exception):
 class Circle:
     def __init__(self, radius: float):
         self.__radius = self.validate_radius(radius)
-        self.__radius = radius
         self.__circumference = 2 * pi * self.__radius
 
     def validate_radius(self, radius: float):
@@ -60,7 +59,7 @@ class Circle:
         return self.__circumference >= other.__circumference
 
     def __hash__(self):
-        return hash((self.__radius, self.__circumference))
+        return hash(self.__radius, self.__circumference)
     def __add__(self, other):
         if isinstance(other, int | float):
             if other < 0 and abs(other) >= self.__radius:
@@ -78,7 +77,7 @@ class Circle:
 
     def __sub__(self, other):
         if isinstance(other, int | float):
-            if abs(other) >= self.__radius:
+            if abs(other) >= self.__radius and other < 0:
                 raise InvalidValueError(
                     f"Ошибка!!!Модуль вычитаемого числа больше либо равен, чем число радиуса."
                     f" Радиус не может быть меньше или равен нулю")
@@ -145,23 +144,27 @@ def execute_application():
         print("Проверка на больше или равно(>=):", c1 >= c2)
     except TypeError as e:
         print(e)
-    c1 = Circle(21)
-    c2 = Circle(5)
+    print()
+    print(f"Изменение радиуса окружности:")
+
+    c3 = Circle(3)
+    c4 = Circle(5)
+
     try:
-        circle_3 = c1 + 10
+        circle_5 = c4 + 20
+        print(f"\nОперация сложения: {circle_5.radius}.")
 
-        print(f"\nОперация сложения: {circle_3.radius}.")
-        circle_3 = c1 - 3
+        circle_5 = c4 - 6
+        print(f"Операция вычитания: {circle_5.radius}.")
 
-        print(f"Операция вычитания: {circle_3.radius}.")
-        c1 += 12
+        circle_5 += 3
+        print(f"Операция сложения с присваиванием:  {circle_5.radius}.")
 
-        print(f"Операция сложения с присваиванием: {c1.radius}.")
-        c1 -= 12
-
-        print(f"Операция вычитания с присваиванием: {c1.radius}.")
+        circle_5 -= 1
+        print(f"Операция вычитания с присваиванием: {circle_5.radius}.")
 
     except Exception as e:
         print(e)
+
 if __name__=="__main__":
     execute_application()

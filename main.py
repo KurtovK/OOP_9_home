@@ -9,41 +9,53 @@
 #Перевод числа в десятичную систему счисления.
 class Number:
     def __init__(self, value, base):
-        self.value = value
+        if base not in [2, 8, 10, 16]:
+            raise ValueError("Недопустимая база")
+        try:
+            int(str(value), base)
+        except ValueError:
+            raise ValueError("Недопустимый номер для данной базы")
+        self.value = str(value)
         self.base = base
 
 class Calculator:
-    def __init__(self, number):
-        self.__number = number
+    @staticmethod
+    def to_octal(number):
+        if number.base != 10:
+            number = Number(int(number.value, number.base), 10)
+        return oct(int(number.value))[2:]
 
-    def to_octal(self):
-        return oct(int(self.__number.value, self.__number.base))[2:]
+    @staticmethod
+    def to_hexadecimal(number):
+        if number.base != 10:
+            number = Number(int(number.value, number.base), 10)
+        return hex(int(number.value))[2:]
 
-    def to_hexadecimal(self):
-        return hex(int(self.__number.value, self.__number.base))[2:]
+    @staticmethod
+    def to_binary(number):
+        if number.base != 10:
+            number = Number(int(number.value, number.base), 10)
+        return bin(int(number.value))[2:]
 
-    def to_binary(self):
-        return bin(int(self.__number.value, self.__number.base))[2:]
-
-    def to_decimal(self):
-        return str(int(self.__number.value, self.__number.base))
+    @staticmethod
+    def to_decimal(number):
+        return str(int(number.value, number.base))
 def executer_application():
-    number1 = Number('1101', 2)
-    number2 = Number('ABC', 16)
+    try:
+        number1 = Number('1101', 2)
+        number2 = Number('ABC', 16)
 
-    calculator1 = Calculator(number1)
-    calculator2 = Calculator(number2)
+        print(f'Число {number1.value} в системе счисления {number1.base} в восьмеричной системе: {Calculator.to_octal(number1)}')
+        print(f'Число {number1.value} в системе счисления {number1.base} в шестнадцатеричной системе: {Calculator.to_hexadecimal(number1)}')
+        print(f'Число {number1.value} в системе счисления {number1.base} в двоичной системе: {Calculator.to_binary(number1)}')
+        print(f'Число {number1.value} в системе счисления {number1.base} в десятичной системе: {Calculator.to_decimal(number1)}')
 
-    print(f'Число {number1.value} в системе счисления {number1.base} в восьмеричной системе: {calculator1.to_octal()}')
-    print(
-        f'Число {number1.value} в системе счисления {number1.base} в шестнадцатеричной системе: {calculator1.to_hexadecimal()}')
-    print(f'Число {number1.value} в системе счисления {number1.base} в двоичной системе: {calculator1.to_binary()}')
-    print(f'Число {number1.value} в системе счисления {number1.base} в десятичной системе: {calculator1.to_decimal()}')
+        print(f'Число {number2.value} в системе счисления {number2.base} в восьмеричной системе: {Calculator.to_octal(number2)}')
+        print(f'Число {number2.value} в системе счисления {number2.base} в шестнадцатеричной системе: {Calculator.to_hexadecimal(number2)}')
+        print(f'Число {number2.value} в системе счисления {number2.base} в двоичной системе: {Calculator.to_binary(number2)}')
+        print(f'Число {number2.value} в системе счисления {number2.base} в десятичной системе: {Calculator.to_decimal(number2)}')
 
-    print(f'Число {number2.value} в системе счисления {number2.base} в восьмеричной системе: {calculator2.to_octal()}')
-    print(
-        f'Число {number2.value} в системе счисления {number2.base} в шестнадцатеричной системе: {calculator2.to_hexadecimal()}')
-    print(f'Число {number2.value} в системе счисления {number2.base} в двоичной системе: {calculator2.to_binary()}')
-    print(f'Число {number2.value} в системе счисления {number2.base} в десятичной системе: {calculator2.to_decimal()}')
+    except ValueError as e:
+        print(e)
 if __name__ =="__main__":
     executer_application()
